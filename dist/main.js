@@ -1,4 +1,3 @@
-'use strict';
 
 /*!
  * dictany
@@ -6,12 +5,12 @@
  * ISC Licensed
  */
 
-var initializeUberDictionary = function initializeUberDictionary(Dictionary) {
-  var RulesList = [],
+const initializeUberDictionary = function (Dictionary) {
+  let RulesList = [],
       ValuesList = [];
-  var Default = Dictionary['DEFAULT'] ? Dictionary['DEFAULT'] : '';
+  let Default = Dictionary['DEFAULT'] ? Dictionary['DEFAULT'] : '';
   delete Dictionary['DEFAULT'];
-  doEach(Dictionary, function (Rule, Value) {
+  doEach(Dictionary, (Rule, Value) => {
     RulesList.push(Rule);
     ValuesList.push(Value);
   });
@@ -22,19 +21,13 @@ var initializeUberDictionary = function initializeUberDictionary(Dictionary) {
   };
 };
 
-var createUberDictionary = function createUberDictionary(uberDictionary) {
-  var _DICT_ = '___DICTIONARY___';
-
-  var _initializeUberDictio = initializeUberDictionary(uberDictionary);
-
-  var Rules = _initializeUberDictio.Rules;
-  var Values = _initializeUberDictio.Values;
-  var Default = _initializeUberDictio.Default;
-
-  var dictionary = function dictionary(Need) {
-    var index = anymatch(Rules, Need, true);
+const createUberDictionary = function (uberDictionary) {
+  const _DICT_ = '___DICTIONARY___';
+  const { Rules, Values, Default } = initializeUberDictionary(uberDictionary);
+  const dictionary = function (Need) {
+    const index = anymatch(Rules, Need, true);
     if (index >= 0) {
-      var value = Values[index];
+      const value = Values[index];
       return value.isDict === _DICT_ ? value(Need) : value;
     } else {
       return Default;
@@ -44,12 +37,8 @@ var createUberDictionary = function createUberDictionary(uberDictionary) {
   return dictionary;
 };
 
-var doEach = function doEach(obj, func) {
-  return Object.keys(obj).forEach(function (key) {
-    return func(key, obj[key]);
-  });
-};
+const doEach = (obj, func) => Object.keys(obj).forEach(key => func(key, obj[key]));
 
-var anymatch = require('anymatch');
+const anymatch = require('anymatch');
 
 module.exports = createUberDictionary;
