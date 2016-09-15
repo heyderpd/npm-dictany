@@ -1,3 +1,4 @@
+'use strict';
 
 /*!
  * dictany
@@ -5,12 +6,12 @@
  * ISC Licensed
  */
 
-const initializeUberDictionary = function (Dictionary) {
-  let RulesList = [],
+var initializeUberDictionary = function initializeUberDictionary(Dictionary) {
+  var RulesList = [],
       ValuesList = [];
-  let Default = Dictionary['DEFAULT'] ? Dictionary['DEFAULT'] : '';
+  var Default = Dictionary['DEFAULT'] ? Dictionary['DEFAULT'] : '';
   delete Dictionary['DEFAULT'];
-  doEach(Dictionary, (Rule, Value) => {
+  doEach(Dictionary, function (Rule, Value) {
     RulesList.push(Rule);
     ValuesList.push(Value);
   });
@@ -21,13 +22,19 @@ const initializeUberDictionary = function (Dictionary) {
   };
 };
 
-const createUberDictionary = function (uberDictionary) {
-  const _DICT_ = '___DICTIONARY___';
-  const { Rules, Values, Default } = initializeUberDictionary(uberDictionary);
-  const dictionary = function (Need) {
-    const index = anymatch(Rules, Need, true);
+var createUberDictionary = function createUberDictionary(uberDictionary) {
+  var _DICT_ = '___DICTIONARY___';
+
+  var _initializeUberDictio = initializeUberDictionary(uberDictionary);
+
+  var Rules = _initializeUberDictio.Rules;
+  var Values = _initializeUberDictio.Values;
+  var Default = _initializeUberDictio.Default;
+
+  var dictionary = function dictionary(Need) {
+    var index = anymatch(Rules, Need, true);
     if (index >= 0) {
-      const value = Values[index];
+      var value = Values[index];
       return value.isDict === _DICT_ ? value(Need) : value;
     } else {
       return Default;
@@ -37,8 +44,12 @@ const createUberDictionary = function (uberDictionary) {
   return dictionary;
 };
 
-const doEach = (obj, func) => Object.keys(obj).forEach(key => func(key, obj[key]));
+var doEach = function doEach(obj, func) {
+  return Object.keys(obj).forEach(function (key) {
+    return func(key, obj[key]);
+  });
+};
 
-const anymatch = require('anymatch');
+var anymatch = require('anymatch');
 
 module.exports = createUberDictionary;

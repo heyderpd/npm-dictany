@@ -1,6 +1,6 @@
 {
   "name": "dictany",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Any Dictionary Module",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "anymatch": "^1.3.0"
+    "anymatch": "^1.3.0",
+    "svg-extractor": "^0.5.7"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
