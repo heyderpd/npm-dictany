@@ -1,7 +1,7 @@
 # DICTANY
 Create you fast and simple dictionary or a big and complex with a easy way.
 
-## All process creating have a avg of 9999 mileseconds and call have a avg of 9999 mileseconds!!!
+## All process creating have a avg of 1 mileseconds and call have a avg of 3 mileseconds!!!
 ```javascript
 npm install dictany
 ```
