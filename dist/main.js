@@ -11,7 +11,7 @@ var initializeUberDictionary = function initializeUberDictionary(Dictionary) {
       ValuesList = [];
   var Default = Dictionary['DEFAULT'] ? Dictionary['DEFAULT'] : '';
   delete Dictionary['DEFAULT'];
-  doEach(Dictionary, function (Rule, Value) {
+  each(Dictionary, function (Rule, Value) {
     RulesList.push(Rule);
     ValuesList.push(Value);
   });
@@ -44,11 +44,9 @@ var createUberDictionary = function createUberDictionary(uberDictionary) {
   return dictionary;
 };
 
-var doEach = function doEach(obj, func) {
-  return Object.keys(obj).forEach(function (key) {
-    return func(key, obj[key]);
-  });
-};
+var _require = require('pytils');
+
+var each = _require.each;
 
 var anymatch = require('anymatch');
 

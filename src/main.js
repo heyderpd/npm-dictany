@@ -9,7 +9,7 @@ const initializeUberDictionary = function(Dictionary) {
   let RulesList = [], ValuesList = []
   let Default = Dictionary['DEFAULT'] ? Dictionary['DEFAULT'] : ''
   delete Dictionary['DEFAULT']
-  doEach(Dictionary, (Rule, Value) => {
+  each(Dictionary, (Rule, Value) => {
     RulesList.push(Rule)
     ValuesList.push(Value)
   })
@@ -38,8 +38,7 @@ const createUberDictionary = function(uberDictionary) {
   return dictionary
 }
 
-const doEach = (obj, func) => Object.keys(obj).forEach(key => func(key, obj[key]))
-
+const { each } = require('pytils')
 const anymatch = require('anymatch')
 
 module.exports = createUberDictionary
