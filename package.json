@@ -1,39 +1,22 @@
 {
-  "name": "dictany",
-  "version": "1.0.4",
-  "description": "Any Dictionary Module",
-  "main": "index.js",
+  "license": "MIT",
+  "author": "NPM cleardep <heyderpd@gmail.com> (http://heyderpd.github.io)",
+  "version": "0.0.0",
   "scripts": {
-    "transpile": "babel src/ -d dist/"
-  },
-  "keywords": [
-    "dictionary",
-    "anymatch",
-    "regex",
-    "string",
-    "match",
-    "any",
-    "list",
-    "nesting",
-    "talk",
-    "response",
-    "message"
-  ],
-  "author": "Any Dictionary Module <heyderpd@gmail.com> (http://heyderpd.github.io)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/heyderpd/npm-dictany.git"
-  },
-  "bugs": {
-    "url": "https://github.com/heyderpd/npm-dictany/issues"
-  },
-  "license": "ISC",
-  "dependencies": {
-    "anymatch": "^1.3.0",
-    "pytils": "^0.13.4"
+    "transpile": "babel src/ --out-file npm/index.js",
+    "test": "mocha --compilers js:babel-register --reporter spec 'test/*.spec.js'",
+    "build": "npm run transpile | npm run test",
+    "web": "webpack --config"
   },
   "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-preset-es2015": "^6.14.0"
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.17.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-register": "^6.16.3",
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "pytils": "^0.16.2"
   }
 }
